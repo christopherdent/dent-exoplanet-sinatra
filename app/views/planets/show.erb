@@ -1,0 +1,27 @@
+
+<h3>Planet Name: <%= @planet.name %></h3>
+<br>
+Star:  <%= @planet.star.name %>
+<br>
+Date Discovered: <%= @planet.date_discovered %>
+<br>
+Discovered by:  <%= @planet.discovered_by %>
+<br>
+Type:  <%= @planet.category %>
+<br>
+
+<br><br>
+
+<a href = "/stars/<%= @star.id %>">View System</a>
+
+<form method="post" action="/planets/<%= @planet.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete">
+</form>
+
+<br><br>
+<a class="button" href="/planets/<%= @planet.id %>/edit">Edit Planet</a>
+<br><br>
+<a class="button" href="/stars">Stars</a><br>
+<a class="button" href="/planets">Planets</a><br>
+<a class="button" href="/">Home</a>

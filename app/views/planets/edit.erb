@@ -1,0 +1,29 @@
+<h2>Edit Planet Details</h2>
+
+<form action="/planet/<%= @planet.id %>" method="post">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+
+  <label> Planet Name: </label>
+  <input type="text" name="planet[name]" value="<%= @planet.name%>"><br><br>
+
+  <label> Year Discovered: </label>
+  <input type="text" name="planet[date_discovered]" value="<%= @planet.date_discovered%>"><br><br>
+
+  <label> Discovered By: </label>
+  <input type="text" name="planet[discovered_by]" value="<%= @planet.discovered_by %>"><br><br>
+
+  <label> Type (if known): </label>
+  <input type="text" name="planet[category]" value="<%= @planet.category %>"><br><br>
+
+  <label> Star Name: </label>
+
+  <br><br>
+
+
+  <br><br>
+
+<input type="submit" value="Edit Planet">
+</form>
+<a class="button" href="/stars">Stars</a><br>
+<a class="button" href="/planets">Planets</a><br>
+<a class="button" href="/">Home</a>

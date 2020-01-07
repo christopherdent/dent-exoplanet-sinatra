@@ -1,0 +1,14 @@
+<h2>All Planets</h2>
+
+
+<% Planet.all.each do |planet| %>
+  <a href="/planets/<%= planet.id %>"><%= planet.name %></a>
+  - Orbiting Star: <a href = "/stars/<%= @star.id %>"><%= @planet.star.name %></a> <br>
+<% end %>
+<br><br>
+<a href="/planets/new">Add a New Planet</a>
+
+<br><br>
+
+
+<a class="button" href="/stars">Stars</a>   |   <a class="button" href="/planets">Planets</a>   |   <a class="button" href="/">Home</a>

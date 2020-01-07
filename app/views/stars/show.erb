@@ -1,0 +1,40 @@
+
+<h1>Star Information for: <%= @star.name %></h1>
+
+
+<%= @star.name %><br>
+-Star Type: <%= @star.star_type %><br>
+-Distance from Earth: <%= @star.distance %> light years<br>
+
+<h2><%= @star.name %> Planets: </h2>
+<br>
+<% @star.planets.each do |planet| %>
+<%= planet.name %><br>
+<% end %>
+<br><br>
+<a href = "/planets/new">Add Planets</a>
+
+<br><br>
+
+
+
+
+-----------------------------------------------------------------------------
+<br>
+<a href="/stars/<%= @star.id %>/edit">Edit Star</a>
+<br>
+<a href = "/stars">Stars Home</a>
+
+
+<br><br><br><br><br><br>
+
+<form method="post" action="/stars/<%= @star.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete">
+</form>
+
+<br>
+
+<a class="button" href="/stars">Stars</a><br>
+<a class="button" href="/planets">Planets</a><br>
+<a class="button" href="/">Home</a>

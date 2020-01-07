@@ -1,0 +1,15 @@
+<h1>
+ Star Landing Page
+</h1>
+
+
+<% Star.all.each do |star| %>
+  <a href="/stars/<%= star.id %>"><%= star.name %></a> <br>
+<% end %>
+<br><br>
+<a href="/stars/new">Add a New Star</a>
+
+<br>
+<a class="button" href="/stars">Stars</a><br>
+<a class="button" href="/planets">Planets</a><br>
+<a class="button" href="/">Home</a>

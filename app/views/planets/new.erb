@@ -1,0 +1,30 @@
+<h2>Add a Planet</h2>
+
+<form action="/planets" method="POST">
+
+<label>Name:</label>
+ <input type="text" name="planet[name]"><br>
+<br>
+ <label>Year Discovered:</label>
+ <input type="text" name="planet[date_discovered]">
+ <br><br>
+
+ <label>Discovered By:</label>
+ <input type="text" name="planet[discovered_by]">
+ <br><br>
+
+ <label>Type (if known):</label>
+ <input type="text" name="planet[category]">
+ <br><br>
+
+ <label>Star:</label>
+ <input type="text" name="star[name]" required><br>
+
+ <br><br>
+
+ <input type="submit" value="Create New Planet">
+<br><br>
+</form>
+<a class="button" href="/stars">Stars</a><br>
+<a class="button" href="/planets">Planets</a><br>
+<a class="button" href="/">Home</a>
