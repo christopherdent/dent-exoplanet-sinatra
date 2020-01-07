@@ -33,7 +33,7 @@ class PlanetsController < ApplicationController
 
   # GET: /planets/5
   get "/planets/:id" do
-    @planet = Planet.find(params[:id])
+    @planet = Planet.find_by_id(params[:id])
     @star = Star.find_by_id(@planet.star_id)
     erb :"/planets/show"
   end
@@ -46,7 +46,16 @@ class PlanetsController < ApplicationController
 
   # PATCH: /planets/5
   patch "/planets/:id" do
-    redirect "/planets/:id"
+    @planet = Planet.find_by_id(params[:id])
+    @star = @planet.star
+    @planet.update(params[:planet])
+    if !params[:planet][:name].empty?
+      #binding.pry
+      @star.planets << Planet.create(params[:planet])
+    end
+    @planet.save
+    redirect "/planets/#{@planet.id}"
+
   end
 
   # DELETE: /planets/5/delete

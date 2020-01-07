@@ -9,7 +9,7 @@
 <h2><%= @star.name %> Planets: </h2>
 <br>
 <% @star.planets.each do |planet| %>
-<%= planet.name %><br>
+<a href = '/planets/<%= planet.id %>'><%= planet.name %></a><br>
 <% end %>
 <br><br>
 <a href = "/planets/new">Add Planets</a>
