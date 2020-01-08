@@ -2,16 +2,18 @@ class PlanetsController < ApplicationController
 
   # GET: /planets
   get "/planets" do
+  
+    @user = User.find_by(params[:username])
     @planets = Planet.all
     @planets.each do |planet|
-      @star = planet.star
-      @planet = planet
+      @star = Star.find_by_id(planet.star_id)
     end
     erb :"/planets/index"
   end
 
   # GET: /planets/new
   get "/planets/new" do
+
     erb :"/planets/new"
   end
 
@@ -19,15 +21,16 @@ class PlanetsController < ApplicationController
   post "/planets" do
     @planets = Planet.all
     @planet = Planet.create(params[:planet])
+
     @star = Star.find_by_name(params[:star][:name])
-      if !params[:star][:name].empty? && @star == nil  #if the star field is filled, and the star comes back nil
-        @planet.star = Star.create(params[:star])   #create the star
-      elsif !params[:star][:name].empty? && @star != nil
-        @planet.star = @star
-##and @planet.star_id = Star.find_by_name(@planet.star)
-      end
+    #binding.pry
+    if @star == nil
+      @planet.star = Star.create(params[:star])
+    else
+      @planet.star = @star
+    end
+    #@star.planets << @planet
     @planet.save
-    @star.planets << @planet
     redirect "/planets/#{@planet.id}"
   end
 

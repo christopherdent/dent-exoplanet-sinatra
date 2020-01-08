@@ -1,7 +1,7 @@
 
 <h3>Planet Name: <%= @planet.name %></h3>
 <br>
-Star:  <%= @planet.star.name %>
+Star:  <%= @planet.star.name if @planet.star %> 
 <br>
 Date Discovered: <%= @planet.date_discovered %>
 <br>
@@ -12,7 +12,7 @@ Type:  <%= @planet.category %>
 
 <br><br>
 
-<a href = "/stars/<%= @star.id %>">View System</a>
+<a href = "/stars/<%= @star.id if @planet.star%>">View System</a>
 
 <br><br>
 <a class="button" href="/planets/<%= @planet.id %>/edit">Edit Planet</a>

@@ -5,27 +5,15 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    enable :sessions
+    set :session_secret, 'exo'
   end
 
   get '/' do
     erb :index
-  end 
+  end
 
-#  get '/signup' do
-#    if Helpers.is_logged_in?(session)
-#      redirect to '/tweets'
-#    else
-#      erb :"/users/signup"
-#    end
-#  end
 
-#  get "/login" do
-#    if Helpers.is_logged_in?(session)
-#      redirect '/tweets'
-#    else
-#      erb :'/users/login'
-#    end
-#  end
 
 
 end

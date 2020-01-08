@@ -1,37 +1,55 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/users" do
-    erb :"/users/index.html"
+  get '/signup' do
+    if Helper.is_logged_in?(session)
+      redirect to '/planets'
+    else
+      erb :"/users/signup"
+    end
   end
 
-  # GET: /users/new
-  get "/users/new" do
-    erb :"/users/new.html"
+  get "/login" do
+    if Helper.is_logged_in?(session)
+      @user = session[:user_id]
+      @user.name = params[username]
+      redirect '/planets'
+    else
+      erb :'/users/login'
+    end
   end
 
-  # POST: /users
-  post "/users" do
-    redirect "/users"
+  get '/logout' do
+    if Helper.is_logged_in?(session)
+      session[:user_id] = nil
+      erb :'/users/login'
+    end
+       redirect '/login'
   end
 
-  # GET: /users/5
-  get "/users/:id" do
-    erb :"/users/show.html"
+  post '/signup' do
+    if Helper.empty_input?(params)
+      redirect to '/signup'
+    else
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect to '/planets'
+    end
   end
 
-  # GET: /users/5/edit
-  get "/users/:id/edit" do
-    erb :"/users/edit.html"
+  post '/login' do
+    @user = User.find_by(:username => params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect to '/planets'
+    else
+      redirect to 'users/login'
+    end
   end
 
-  # PATCH: /users/5
-  patch "/users/:id" do
-    redirect "/users/:id"
-  end
 
-  # DELETE: /users/5/delete
-  delete "/users/:id/delete" do
-    redirect "/users"
-  end
+    get '/users/:slug' do
+      @user = User.find_by_slug(params[:slug])
+      erb :"/users/show"
+    end
+
 end
