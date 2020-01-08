@@ -1,5 +1,6 @@
 <h1>Add New Star</h1><br>
 
+<p>Use this form to add a new Star</p>
 <form action="/stars" method="POST">
   <label>Star Name:  </label>
     <input type="text" name="star[name]"><br><br>
@@ -7,22 +8,25 @@
     <label>Star Type:  </label>
       <input type="text" name="star[star_type]"><br><br>
 
-    <label>Distance from Earth:  </label>
+    <label>Distance from Earth (in light years):  </label>
       <input type="text" name="star[distance]"><br><br>
 
+    <label>Add a Planet? (optional)</label>
+       <input type="text" name="planet[name]"><br>
 <br><br>
 
+<input type="submit" value="Create New Star System">
+</form>
  <p>--------------------------------------------------------------------------------------------------</p>
 
 <!--- Consider reintegrating at later point but for now just add planet link from show page
- <p>Add Planets (Optional):</p><br>
- <label>Planet Name(s):</label><br>
+
   <input type="text" name="planet[name]"><br>
   <input type="text" name="planet[name]"><br>
-  <input type="text" name="planet[name]"><br>
+
   <input type="submit" value="Create New Star System">
 </form>
 --->
-<a class="button" href="/stars">Stars</a><br>
-<a class="button" href="/planets">Planets</a><br>
+<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a><br>
+<br><br>
 <a class="button" href="/">Home</a>

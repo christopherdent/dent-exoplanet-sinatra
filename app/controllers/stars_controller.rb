@@ -14,7 +14,7 @@ class StarsController < ApplicationController
   post "/stars" do
     @stars = Star.all
     @star = Star.create(params[:star])
-      binding.pry
+    #binding.pry
     if !params[:planet][:name].empty?
         @star.planets << Planet.create(params[:planet])
       end
@@ -48,7 +48,7 @@ class StarsController < ApplicationController
   end
 
   # DELETE: /stars/5/delete
-  delete "/stars/:id/delete" do
+  delete "/stars/:id" do
     @star = Star.find(params[:id])
     @star.delete
     redirect "/stars"

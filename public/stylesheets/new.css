@@ -1,4 +1,35 @@
 label {
   width: 175px;
   display: inline-block;
+  font-family: verdana;
+  text-align: left;
+}
+
+
+p {
+  font-family: verdana;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+h2 {
+  font-family: verdana;
+  text-align: center;
+  color: blue;
+
+}
+
+h1 {
+  font-family: verdana;
+  text-align: center;
+  color: blue;
+
+}
+
+form {
+  font-family: verdana;
+  text-align: center;
+  color: blue;
+
 }

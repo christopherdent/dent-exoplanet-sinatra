@@ -50,8 +50,7 @@ class PlanetsController < ApplicationController
     @star = @planet.star
     @planet.update(params[:planet])
     if !params[:planet][:name].empty?
-      #binding.pry
-      @star.planets << Planet.create(params[:planet])
+        @star.planets << Planet.create(params[:planet])
     end
     @planet.save
     redirect "/planets/#{@planet.id}"
@@ -59,7 +58,7 @@ class PlanetsController < ApplicationController
   end
 
   # DELETE: /planets/5/delete
-  delete "/planets/:id/delete" do
+  delete "/planets/:id" do
     @planet = Planet.find(params[:id])
     @planet.delete
     redirect "/planets"
