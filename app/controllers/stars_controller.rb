@@ -2,12 +2,23 @@ class StarsController < ApplicationController
 
   # GET: /stars
   get "/stars" do
-    erb :"/stars/index"
+    if Helper.is_logged_in?(session)
+      @user = User.find_by(params[:username])
+      erb :"/stars/index"
+    else
+      erb :"/users/login"
+    end
   end
 
   # GET: /stars/new
+
   get "/stars/new" do
-    erb :"/stars/new"
+    if Helper.is_logged_in?(session)
+      @user = User.find_by(params[:username])
+      erb :"/stars/new"
+    else
+      erb :"/users/login"
+    end
   end
 
   # POST: /stars
@@ -24,15 +35,26 @@ class StarsController < ApplicationController
 
   # GET: /stars/5
   get "/stars/:id" do
-
-    @star = Star.find(params[:id])
-    erb :"/stars/show"
+    if Helper.is_logged_in?(session)
+      @user = User.find_by(params[:username])
+      @star = Star.find(params[:id])
+      params["star"] = @star
+      erb :"/stars/show"
+#if theres a star name can you add it to the params hash ?
+    else
+      erb :"/users/login"
+    end
   end
 
   # GET: /stars/5/edit
   get "/stars/:id/edit" do
-    @star = Star.find(params[:id])
-    erb :"/stars/edit"
+    if Helper.is_logged_in?(session)
+      @user = User.find_by(params[:username])
+      @star = Star.find(params[:id])
+      erb :"/stars/edit"
+    else
+      erb :"/users/login"
+    end
   end
 
   # PATCH: /stars/5

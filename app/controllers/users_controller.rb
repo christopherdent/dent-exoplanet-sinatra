@@ -1,20 +1,21 @@
 class UsersController < ApplicationController
 
-  get '/signup' do
-    if Helper.is_logged_in?(session)
-      redirect to '/planets'
-    else
-      erb :"/users/signup"
-    end
-  end
-
   get "/login" do
     if Helper.is_logged_in?(session)
+      #user = User.find_by(username: params[:email])
       @user = session[:user_id]
       @user.name = params[username]
       redirect '/planets'
     else
       erb :'/users/login'
+    end
+  end
+
+  get '/signup' do
+    if Helper.is_logged_in?(session)
+      redirect to '/planets'
+    else
+      erb :"/users/signup"
     end
   end
 
@@ -37,19 +38,19 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    @user = User.find_by(:username => params[:username])
+    @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
+      session[:user_id] = @user.id  #Doing the loggin in
       redirect to '/planets'
     else
-      redirect to 'users/login'
+      redirect '/login'
     end
   end
 
 
-    get '/users/:slug' do
-      @user = User.find_by_slug(params[:slug])
-      erb :"/users/show"
-    end
+    #get '/users/:slug' do
+    #  @user = User.find_by_slug(params[:slug])
+    #  erb :"/users/show"
+    #end
 
 end

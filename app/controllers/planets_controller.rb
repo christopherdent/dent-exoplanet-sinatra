@@ -2,19 +2,24 @@ class PlanetsController < ApplicationController
 
   # GET: /planets
   get "/planets" do
-  
-    @user = User.find_by(params[:username])
-    @planets = Planet.all
-    @planets.each do |planet|
-      @star = Star.find_by_id(planet.star_id)
+    if Helper.is_logged_in?(session)
+      @user = User.find_by(params[:username])
+      @planets = Planet.all
+      @planets.each do |planet|
+        @star = Star.find_by_id(planet.star_id)
+      end
+      erb :"/planets/index"
+    else erb :"/users/login"
     end
-    erb :"/planets/index"
   end
 
   # GET: /planets/new
   get "/planets/new" do
-
+    @star = params[:star_name]
+    if Helper.is_logged_in?(session)
     erb :"/planets/new"
+    else erb :"/users/login"
+    end
   end
 
   # POST: /planets
@@ -36,15 +41,23 @@ class PlanetsController < ApplicationController
 
   # GET: /planets/5
   get "/planets/:id" do
-    @planet = Planet.find_by_id(params[:id])
-    @star = Star.find_by_id(@planet.star_id)
-    erb :"/planets/show"
+    if Helper.is_logged_in?(session)
+      @planet = Planet.find_by_id(params[:id])
+      @star = Star.find_by_id(@planet.star_id)
+      erb :"/planets/show"
+    else
+      erb :"/users/login"
+    end
   end
 
   # GET: /planets/5/edit
   get "/planets/:id/edit" do
-    @planet = Planet.find(params[:id])
-    erb :"/planets/edit"
+    if Helper.is_logged_in?(session)
+      @planet = Planet.find(params[:id])
+      erb :"/planets/edit"
+    else
+      erb :"/users/login"
+    end
   end
 
   # PATCH: /planets/5

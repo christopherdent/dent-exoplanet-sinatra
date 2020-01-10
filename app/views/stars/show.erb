@@ -13,11 +13,11 @@
 <% end %>
 
 <br><br>
-<a href = "/planets/new">Add Planets</a>
 
-<br><br>
-
-
+<form action="/planets/new" method="get">
+  <input type="hidden" id="hidden" name="star_name" value="<%= @star.name%>">
+  <input type="submit" value="Add Planets">
+  </form>
 
 
 -----------------------------------------------------------------------------
