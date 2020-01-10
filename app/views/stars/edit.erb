@@ -16,9 +16,11 @@
 
   <label>Edit Planets:</label><br>
     <br><br>
-    <% Planet.all.each do |planet| %>
+
+    <% @star.planets.all.each do |planet| %>
       <label><%= planet.name %></label>
       <input type="checkbox" name="star[planet_ids][]" value="<%= planet.id %>" <%='checked' if @star.planets.include?(planet) %>><br>
+      
     <% end %>
 
 <label>Add New Planet:</label>
@@ -32,3 +34,8 @@
 <a class="button" href="/stars">Stars</a><br>
 <a class="button" href="/planets">Planets</a><br>
 <a class="button" href="/">Home</a>
+
+<br><br><br><br><br>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
+<br>
+<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

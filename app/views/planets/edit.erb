@@ -15,7 +15,9 @@
   <label> Type (if known): </label>
   <input type="text" name="planet[category]" value="<%= @planet.category %>"><br><br>
 
-  <label> Star Name: <%= @planet.star.name %> </label>
+  <label> Star Name: </label>
+  <input type="text" name="star[name]" value="<%= @planet.star.name if @planet.star %>">
+
 
   <br><br>
 
@@ -27,3 +29,8 @@
 <a class="button" href="/stars">Stars</a><br>
 <a class="button" href="/planets">Planets</a><br>
 <a class="button" href="/">Home</a>
+<br><br><br><br>
+<br><br><br><br><br>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
+<br>
+<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

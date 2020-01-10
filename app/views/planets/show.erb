@@ -1,30 +1,26 @@
 
-<h3>Planet Name: <%= @planet.name %></h3>
-<br>
-Star:  <%= @planet.star.name if @planet.star %>
-<br>
-Date Discovered: <%= @planet.date_discovered %>
-<br>
-Discovered by:  <%= @planet.discovered_by %>
-<br>
-Type:  <%= @planet.category %>
-<br>
+<h3>Planet Information for <%= @planet.name %></h3>
+<ul>
+<li>Star:  <%= @planet.star.name if @planet.star %>
+<li>Date Discovered: <%= @planet.date_discovered %>
+<li>Discovered by:  <%= @planet.discovered_by %>
+<li>Type:  <%= @planet.category %>
+</ul>
 
 <br><br>
 
-<a href = "/stars/<%= @star.id if @planet.star%>">View System</a>
-
-<br><br>
-<a class="button" href="/planets/<%= @planet.id %>/edit">Edit Planet</a>
+<a href = "/stars/<%= @star.id if @planet.star%>">View System</a>     |     <a class="button" href="/planets/<%= @planet.id %>/edit">Edit Planet</a>
 <br><br>
 
 <form method="post" action="/planets/<%= @planet.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="delete">
+  <input type="submit" value="Delete Planet">
 </form>
 
 <br><br>
 
-<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a><br>
-<br><br>
-<a class="button" href="/">Home</a>    | <a class="button" href="/logout">Logout</a>
+<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a>     |     <a class="button" href="/">Home</a>
+<br><br><br><br><br>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
+<br>
+<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

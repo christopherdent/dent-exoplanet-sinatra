@@ -25,10 +25,11 @@ class StarsController < ApplicationController
   post "/stars" do
     @stars = Star.all
     @star = Star.create(params[:star])
-    #binding.pry
+    #list = params[:list]
     if !params[:planet][:name].empty?
         @star.planets << Planet.create(params[:planet])
       end
+      binding.pry
     @star.save
     redirect "/stars/#{@star.id}"
   end
@@ -51,7 +52,9 @@ class StarsController < ApplicationController
     if Helper.is_logged_in?(session)
       @user = User.find_by(params[:username])
       @star = Star.find(params[:id])
+      #binding.pry
       erb :"/stars/edit"
+
     else
       erb :"/users/login"
     end

@@ -3,13 +3,28 @@
 <p>Use this form to add a new Star</p>
 <form action="/stars" method="POST">
   <label>Star Name:  </label>
-    <input type="text" name="star[name]"><br><br>
+    <input type="text" name="star[name]" required><br><br>
 
-    <label>Star Type:  </label>
-      <input type="text" name="star[star_type]"><br><br>
+  <!---  <label>Star Type:  </label>
+      <input type="text" name="star[star_type]"><br><br>  --->
+
+<br>
+    <label>Select Star Type:</label>
+         <select name="star[star_type]" required>
+           <option selected="selected">Please select...</option>
+           <option value = "Hypergiant">Hypergiant</option>
+           <option value = "Supergiant">Supergiant</option>
+           <option value = "Bright Giant">Bright Giant</option>
+           <option value = "Giant">Giant</option>
+           <option value = "Main Sequence">Main Sequence</option>
+           <option value = "Red Dwarf">Red Dwarf</option>
+           <option value = "White Dwarf">White Dwarf</option>
+           <option value = "Brown Dwarf">Brown Dwarf</option>
+         </select>
+<br>
 
     <label>Distance from Earth (in light years):  </label>
-      <input type="text" name="star[distance]"><br><br>
+      <input type="text" name="star[distance]" required><br><br>
 
     <label>Add a Planet? (optional)</label>
        <input type="text" name="planet[name]"><br>
@@ -19,14 +34,9 @@
 </form>
  <p>--------------------------------------------------------------------------------------------------</p>
 
-<!--- Consider reintegrating at later point but for now just add planet link from show page
 
-  <input type="text" name="planet[name]"><br>
-  <input type="text" name="planet[name]"><br>
-
-  <input type="submit" value="Create New Star System">
-</form>
---->
-<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a><br>
-<br><br>
-<a class="button" href="/">Home</a>
+<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a>     |     <a class="button" href="/">Home</a>
+<br><br><br><br><br>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
+<br>
+<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

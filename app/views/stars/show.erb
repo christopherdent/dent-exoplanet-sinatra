@@ -1,18 +1,20 @@
 
-<h1>Star Information for: <%= @star.name %></h1>
+<h3>Star Information for: <%= @star.name %></h3>
 
+<ul>
+<li>Name: <%= @star.name %><br>
+<li>Star Type: <%= @star.star_type %><br>
+<li>Distance from Earth: <%= @star.distance %> light years<br>
+</ul>
 
--Name: <%= @star.name %><br>
--Star Type: <%= @star.star_type %><br>
--Distance from Earth: <%= @star.distance %> light years<br>
-
+<form method="get" action="/stars/<%= @star.id %>/edit"><button type="submit">Edit Star</button></form>
 <h4><%= @star.name %> Planets: </h4>
-<br>
+<ul>
 <% @star.planets.each do |planet| %>
-<c><a href = '/planets/<%= planet.id %>'><%= planet.name %></a></c><br>
+<li><a href = '/planets/<%= planet.id %>'><%= planet.name %></a>
 <% end %>
-
-<br><br>
+</ul>
+<br>
 
 <form action="/planets/new" method="get">
   <input type="hidden" id="hidden" name="star_name" value="<%= @star.name%>">
@@ -21,21 +23,15 @@
 
 
 -----------------------------------------------------------------------------
+<br><br><br><br><br>
+
+
+<form method="post" action="/stars/<%= @star.id %>"><input id="hidden" type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete Star"></form>
+
 <br>
-<a href="/stars/<%= @star.id %>/edit">Edit Star</a>
+
+<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a>     |     <a class="button" href="/">Home</a>
+<br><br><br><br><br>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
 <br>
-<a href = "/stars">Stars Home</a>
-
-
-<br><br>
-
-<form method="post" action="/stars/<%= @star.id %>">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="delete this star">
-</form>
-
-<br><br>
-
-<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a><br>
-<br><br>
-<a class="button" href="/">Home</a>
+<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

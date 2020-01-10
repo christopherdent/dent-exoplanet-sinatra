@@ -15,9 +15,10 @@ class PlanetsController < ApplicationController
 
   # GET: /planets/new
   get "/planets/new" do
-    @star = params[:star_name]
     if Helper.is_logged_in?(session)
-    erb :"/planets/new"
+      @user = User.find_by(params[:username])
+      @star = params[:star_name]
+      erb :"/planets/new"
     else erb :"/users/login"
     end
   end
@@ -26,15 +27,12 @@ class PlanetsController < ApplicationController
   post "/planets" do
     @planets = Planet.all
     @planet = Planet.create(params[:planet])
-
     @star = Star.find_by_name(params[:star][:name])
-    #binding.pry
     if @star == nil
       @planet.star = Star.create(params[:star])
     else
       @planet.star = @star
     end
-    #@star.planets << @planet
     @planet.save
     redirect "/planets/#{@planet.id}"
   end
@@ -42,6 +40,7 @@ class PlanetsController < ApplicationController
   # GET: /planets/5
   get "/planets/:id" do
     if Helper.is_logged_in?(session)
+      @user = User.find_by(params[:username])
       @planet = Planet.find_by_id(params[:id])
       @star = Star.find_by_id(@planet.star_id)
       erb :"/planets/show"
@@ -53,6 +52,7 @@ class PlanetsController < ApplicationController
   # GET: /planets/5/edit
   get "/planets/:id/edit" do
     if Helper.is_logged_in?(session)
+      @user = User.find_by(params[:username])
       @planet = Planet.find(params[:id])
       erb :"/planets/edit"
     else
@@ -63,9 +63,10 @@ class PlanetsController < ApplicationController
   # PATCH: /planets/5
   patch "/planets/:id" do
     @planet = Planet.find_by_id(params[:id])
-    @star = @planet.star
     @planet.update(params[:planet])
     if !params[:planet][:name].empty?
+        @star = Star.find_by(params[:star])  #@planet.star
+        @planet.star = Star.find_by(params[:star])
         @star.planets << Planet.create(params[:planet])
     end
     @planet.save
