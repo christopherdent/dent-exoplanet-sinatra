@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   get "/login" do
+    #@user = session[:user_id]
+    #@user.name = params[username]
     if Helper.is_logged_in?(session)
       #user = User.find_by(username: params[:email])
-      @user = session[:user_id]
-      @user.name = params[username]
       redirect '/planets'
     else
       erb :'/users/login'

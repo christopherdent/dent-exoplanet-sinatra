@@ -3,8 +3,10 @@
 <h2>All Planets</h2>
 
 <ul>
+
 <% @planets.each do |planet| %>
-<li>  <a href="/planets/<%= planet.id %>"><%= planet.name %> </a> <br>
+
+<li>  <a href="/planets/<%= planet.id %>"><%= planet.name if planet.star_id != nil %> </a> <br>  <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
 <% end %>
 </ul>
 <br><br>

@@ -6,7 +6,9 @@ class PlanetsController < ApplicationController
       @user = User.find_by(params[:username])
       @planets = Planet.all
       @planets.each do |planet|
+        @planet = planet
         @star = Star.find_by_id(planet.star_id)
+
       end
       erb :"/planets/index"
     else erb :"/users/login"
@@ -29,10 +31,11 @@ class PlanetsController < ApplicationController
     @planet = Planet.create(params[:planet])
     @star = Star.find_by_name(params[:star][:name])
     if @star == nil
-      @planet.star = Star.create(params[:star])
+      @star = Star.create(params[:star])
     else
       @planet.star = @star
     end
+    @star.planets << @planet
     @planet.save
     redirect "/planets/#{@planet.id}"
   end
@@ -64,14 +67,12 @@ class PlanetsController < ApplicationController
   patch "/planets/:id" do
     @planet = Planet.find_by_id(params[:id])
     @planet.update(params[:planet])
-    if !params[:planet][:name].empty?
-        @star = Star.find_by(params[:star])  #@planet.star
-        @planet.star = Star.find_by(params[:star])
-        @star.planets << Planet.create(params[:planet])
-    end
+    @star = Star.find_by(params[:star])
+        if !@star.planets.include?(@planet)
+          @star.planets << @planet
+        end
     @planet.save
     redirect "/planets/#{@planet.id}"
-
   end
 
   # DELETE: /planets/5/delete

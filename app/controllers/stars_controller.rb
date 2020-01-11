@@ -29,8 +29,7 @@ class StarsController < ApplicationController
     if !params[:planet][:name].empty?
         @star.planets << Planet.create(params[:planet])
       end
-      binding.pry
-    @star.save
+      @star.save
     redirect "/stars/#{@star.id}"
   end
 
