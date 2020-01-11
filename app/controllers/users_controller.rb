@@ -1,48 +1,53 @@
+  require 'rack-flash'
 class UsersController < ApplicationController
-
-  get "/login" do
-    #@user = session[:user_id]
-    #@user.name = params[username]
-    if Helper.is_logged_in?(session)
-      #user = User.find_by(username: params[:email])
-      redirect '/planets'
-    else
-      erb :'/users/login'
-    end
-  end
+    use Rack::Flash
 
   get '/signup' do
-      erb :"/users/signup"
-  end
-
-  get '/logout' do
     if Helper.is_logged_in?(session)
-      session[:user_id] = nil
-      erb :'/users/login'
+      redirect '/planets'
+    else
+      erb :"/users/signup" #locals: {message: "Please sign up before you sign in"}
     end
-       redirect '/login'
   end
 
   post '/signup' do
     if Helper.empty_input?(params)
       redirect to '/signup'
     else
-      @user = User.create(params)
+      @user = User.new(:username => params[:username], :password => params[:password])
+      @user.save
       session[:user_id] = @user.id
       redirect to '/planets'
     end
   end
 
-  post '/login' do
-    @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id  #Doing the loggin in
-      redirect to '/planets'
+  get "/login" do
+    if Helper.is_logged_in?(session)
+      redirect '/planets'
     else
-      redirect '/login'
+      erb :'/users/login'
     end
   end
 
+  post '/login' do
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id  #Doing the loggin in
+      redirect to '/planets'
+    else
+      flash[:message] = "Please sign up before logging in."
+      redirect '/signup'
+    end
+  end
+
+  get '/logout' do
+    if Helper.is_logged_in?(session)
+      session.destroy
+      session.clear
+      redirect to '/login'
+    end
+       redirect '/'
+  end
 
     #get '/users/:slug' do
     #  @user = User.find_by_slug(params[:slug])

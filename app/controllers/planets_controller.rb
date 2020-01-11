@@ -5,50 +5,54 @@ class PlanetsController < ApplicationController
   # GET: /planets
   get "/planets" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
-      @planets = Planet.all
-      @planets.each do |planet|
-        @planet = planet
-        @star = Star.find_by_id(planet.star_id)
-
-      end
-      erb :"/planets/index"
-    else erb :"/users/login"
+        @user = Helper.current_user(session)
+        @planets = Planet.all
+          @planets.each do |planet|
+            @planet = planet
+          @star = Star.find_by_id(planet.star_id)
+          end
+          erb :"/planets/index"
+    else
+      redirect to '/login'
     end
   end
 
   # GET: /planets/new
   get "/planets/new" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
+      @user = Helper.current_user(session)
       @star = params[:star_name]
       erb :"/planets/new"
-    else erb :"/users/login"
+    else
+      redirect to '/login'
     end
   end
 
   # POST: /planets
   post "/planets" do
-    @planets = Planet.all
-    @planet = Planet.create(params[:planet])
-    @star = Star.find_by_name(params[:star][:name])
-    if @star == nil
-      @star = Star.create(params[:star])
+    if Helper.is_logged_in?(session)
+      @planets = Planet.all
+      @planet = Planet.create(params[:planet])
+      @star = Star.find_by_name(params[:star][:name])
+      if @star == nil
+        @star = Star.create(params[:star])
+      else
+        @planet.star = @star
+      end
+      @star.planets << @planet
+      @planet.save
+      flash[:message] = "Successfully added planet."
+      redirect "/stars/#{@star.id}"
     else
-      @planet.star = @star
-    end
-    @star.planets << @planet
-    @planet.save
-    flash[:message] = "Successfully added planet."
-     redirect "/stars/#{@star.id}"
+      redirect to '/login'
      #redirect "/planets/#{@planet.id}"  -  seems to make more sense to redirect to the star show page, with planets listed and linked
-
+   end
   end
 
   # GET: /planets/5
   get "/planets/:id" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
+      @user = Helper.current_user(session)
       @planet = Planet.find_by_id(params[:id])
       @star = Star.find_by_id(@planet.star_id)
       erb :"/planets/show"
@@ -60,7 +64,7 @@ class PlanetsController < ApplicationController
   # GET: /planets/5/edit
   get "/planets/:id/edit" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
+      @user = Helper.current_user(session)
       @planet = Planet.find(params[:id])
       erb :"/planets/edit"
     else

@@ -21,6 +21,9 @@
 
 </div>
 <br><br><br>
+<% if Helper.is_logged_in?(session) %>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<% end %>
 
 </body>
 </html>

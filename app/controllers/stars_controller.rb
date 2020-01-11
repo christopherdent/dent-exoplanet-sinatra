@@ -5,7 +5,8 @@ class StarsController < ApplicationController
   # GET: /stars
   get "/stars" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
+
+      @user = Helper.current_user(session)
       erb :"/stars/index"
     else
       erb :"/users/login"
@@ -16,7 +17,7 @@ class StarsController < ApplicationController
 
   get "/stars/new" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
+      @user = Helper.current_user(session)
       erb :"/stars/new"
     else
       erb :"/users/login"
@@ -27,8 +28,7 @@ class StarsController < ApplicationController
   post "/stars" do
     @stars = Star.all
     @star = Star.create(params[:star])
-    #list = params[:list]
-    if !params[:planet][:name].empty?
+      if !params[:planet][:name].empty?
         @star.planets << Planet.create(params[:planet])
       end
       @star.save
@@ -38,7 +38,7 @@ class StarsController < ApplicationController
   # GET: /stars/5
   get "/stars/:id" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
+      @user = Helper.current_user(session)
       @star = Star.find(params[:id])
       params["star"] = @star
       erb :"/stars/show"
@@ -51,7 +51,7 @@ class StarsController < ApplicationController
   # GET: /stars/5/edit
   get "/stars/:id/edit" do
     if Helper.is_logged_in?(session)
-      @user = User.find_by(params[:username])
+      @user = Helper.current_user(session)
       @star = Star.find(params[:id])
       #binding.pry
       erb :"/stars/edit"

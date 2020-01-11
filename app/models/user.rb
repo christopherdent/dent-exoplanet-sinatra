@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
   has_many :planets
-
+  has_many :stars
 
   def slug
     self.username.downcase.gsub(' ', '-')
