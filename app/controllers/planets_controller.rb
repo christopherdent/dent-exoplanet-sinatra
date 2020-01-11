@@ -39,9 +39,10 @@ class PlanetsController < ApplicationController
     end
     @star.planets << @planet
     @planet.save
-    flash[:message] = "Successfully created planet."
-     redirect "/planets/#{@planet.id}"
-     
+    flash[:message] = "Successfully added planet."
+     redirect "/stars/#{@star.id}"
+     #redirect "/planets/#{@planet.id}"  -  seems to make more sense to redirect to the star show page, with planets listed and linked
+
   end
 
   # GET: /planets/5
