@@ -1,4 +1,6 @@
+require 'rack-flash'
 class PlanetsController < ApplicationController
+  use Rack::Flash
 
   # GET: /planets
   get "/planets" do
@@ -37,7 +39,9 @@ class PlanetsController < ApplicationController
     end
     @star.planets << @planet
     @planet.save
-    redirect "/planets/#{@planet.id}"
+    flash[:message] = "Successfully created planet."
+     redirect "/planets/#{@planet.id}"
+     
   end
 
   # GET: /planets/5

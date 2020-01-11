@@ -1,4 +1,4 @@
-<h1> Edit A Star </h1>
+<h2> Edit Star Details </h2>
 
 <form action="/stars/<%= @star.id %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
@@ -6,36 +6,43 @@
   <label> Star Name </label>
       <input type="text" name="star[name]" value="<%= @star.name %>"><br><br>
 
-  <label> Star Type: </label>
-    <input type="text" name="star[star_type]" value="<%= @star.star_type %>"><br><br>
+      <label>Select Star Type:</label>
+           <select name="star[star_type]" required>
+             <option selected="selected">Please select...</option>
+             <option value = "Hypergiant">Hypergiant</option>
+             <option value = "Supergiant">Supergiant</option>
+             <option value = "Bright Giant">Bright Giant</option>
+             <option value = "Giant">Giant</option>
+             <option value = "Main Sequence">Main Sequence</option>
+             <option value = "Red Dwarf">Red Dwarf</option>
+             <option value = "White Dwarf">White Dwarf</option>
+             <option value = "Brown Dwarf">Brown Dwarf</option>
+             <option value = "Pulsar">Pulsar</option>
+           </select>
+
+<br><br>
 
   <label> Distance from Earth (in light years): </label>
     <input type="text" name="star[distance]" value="<%= @star.distance %>"><br><br>
 
     <br><br>
 
-  <label>Edit Planets:</label><br>
-    <br><br>
-
+  <label>Planets:</label>
+    <br>
+    <ul>
     <% @star.planets.all.each do |planet| %>
-      <label><%= planet.name %></label>
-      <input type="checkbox" name="star[planet_ids][]" value="<%= planet.id %>" <%='checked' if @star.planets.include?(planet) %>><br>
-      
+      <li><a href="/planets/<%= planet.id %>"><%= planet.name %></a>
     <% end %>
+    </ul>
+<!--- <label>Add New Planet:</label>
+<input type="text" name="planet[name]">  Not seeing a reason to let them add new planet in the edit star section --->
+<br>
 
-<label>Add New Planet:</label>
-<input type="text" name="planet[name]">
-<br><br>
-
-<input type="submit" value="Save Star" id="submit">
+<input type="submit" value="Save Changes" id="submit">
 
 </form>
-
-<a class="button" href="/stars">Stars</a><br>
-<a class="button" href="/planets">Planets</a><br>
-<a class="button" href="/">Home</a>
+<br>
+<a href = "/stars">Stars</a>     |     <a href="/planets">Planets</a>     |     <a href="/">Home</a>
 
 <br><br><br><br><br>
-<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
-<br>
-<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

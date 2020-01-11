@@ -12,11 +12,7 @@ class UsersController < ApplicationController
   end
 
   get '/signup' do
-    if Helper.is_logged_in?(session)
-      redirect to '/planets'
-    else
       erb :"/users/signup"
-    end
   end
 
   get '/logout' do

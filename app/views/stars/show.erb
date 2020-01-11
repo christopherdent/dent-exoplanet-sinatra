@@ -8,6 +8,11 @@
 </ul>
 
 <form method="get" action="/stars/<%= @star.id %>/edit"><button type="submit">Edit Star</button></form>
+<br>
+
+
+
+
 <h4><%= @star.name %> Planets: </h4>
 <ul>
 <% @star.planets.each do |planet| %>
@@ -18,20 +23,22 @@
 
 <form action="/planets/new" method="get">
   <input type="hidden" id="hidden" name="star_name" value="<%= @star.name%>">
-  <input type="submit" value="Add Planets">
+  <input type="submit" value="Add Planets to System">
   </form>
+<br>
 
+<form method="post" action="/stars/<%= @star.id %>"><input id="hidden" type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete Star System"></form>
 
------------------------------------------------------------------------------
+<br>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <br><br><br><br><br>
 
 
-<form method="post" action="/stars/<%= @star.id %>"><input id="hidden" type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete Star"></form>
 
-<br>
 
 <a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a>     |     <a class="button" href="/">Home</a>
 <br><br><br><br><br>
-<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
-<br>
-<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

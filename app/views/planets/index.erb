@@ -6,7 +6,7 @@
 
 <% @planets.each do |planet| %>
 
-<li>  <a href="/planets/<%= planet.id %>"><%= planet.name if planet.star_id != nil %> </a> <br>  <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
+<li>  <a href="/planets/<%= planet.id %>"><%= planet.name if planet.star_id != nil %> </a>  <br>  <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
 <% end %>
 </ul>
 <br><br>
@@ -16,9 +16,7 @@
 <br><br>
 
 
-<a class="button" href="/stars">Stars</a>   |   <a class="button" href="/planets">Planets</a>   |   <a class="button" href="/">Home</a>
+<a class="button" href="/stars">Stars</a>   |   Planets   |   <a class="button" href="/">Home</a>
 
 <br><br><br><br><br>
-<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
-<br>
-<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

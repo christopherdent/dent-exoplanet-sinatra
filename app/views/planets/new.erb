@@ -26,6 +26,8 @@
       <option value = "Rocky - Ocean Planet">Ocean Planet</option>
       <option value = "Rocky - Sub-Earth">Sub Earth</option>
       <option value = "Rocky - Super-Earth">Super Earth</option>
+      <option value = "Rocky - Earth-like">Earth-like</option>
+      <option value = "Gaseous - Gas Giant">Gas Giant</option>
       <option value = "Gaseous - Eccentric Jupiter">Eccentric Jupiter</option>
       <option value = "Gaseous - Gas Dwarf">Gas Dwarf</option>
       <option value = "Gaseous - Helium Planet">Helium Planet</option>
@@ -41,7 +43,7 @@
  <br><br>
 
  <label>Parent Star:</label>
- <input type="text" name="star[name]" value = "<%= @star %>"><br>
+ <input type="text" name="star[name]" value = "<%= @star %>" required><br>
 
  <br><br>
 
@@ -52,6 +54,4 @@
 <br><br>
 <a class="button" href="/">Home</a>
 <br><br><br><br><br>
-<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
-<br>
-<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

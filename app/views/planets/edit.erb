@@ -12,8 +12,35 @@
   <label> Discovered By: </label>
   <input type="text" name="planet[discovered_by]" value="<%= @planet.discovered_by %>"><br><br>
 
-  <label> Type (if known): </label>
-  <input type="text" name="planet[category]" value="<%= @planet.category %>"><br><br>
+   <label>Likely Planet Type:</label>
+      <select name="planet[category]" required>
+        <option selected="selected">Please select...</option>
+        <option value = "Rocky - Carbon Planet">Carbon Planet</option>
+        <option value = "Rocky - Coreless Planet">Coreless Planet</option>
+        <option value = "Rocky - Desert Planet">Desert Planet</option>
+        <option value = "Rocky - Dwarf Planet">Dwarf Planet</option>
+        <option value = "Rocky - Ice Planet">Ice Planet</option>
+        <option value = "Rocky - Iron Planet">Iron Planet</option>
+        <option value = "Rocky - Lava Planet">Lava Planet</option>
+        <option value = "Rocky - Mega-Earth">Mega Earth</option>
+        <option value = "Rocky - Ocean Planet">Ocean Planet</option>
+        <option value = "Rocky - Sub-Earth">Sub Earth</option>
+        <option value = "Rocky - Super-Earth">Super Earth</option>
+        <option value = "Rocky - Earth-like">Earth-like</option>
+        <option value = "Gaseous - Gas Giant">Gas Giant</option>
+        <option value = "Gaseous - Eccentric Jupiter">Eccentric Jupiter</option>
+        <option value = "Gaseous - Gas Dwarf">Gas Dwarf</option>
+        <option value = "Gaseous - Helium Planet">Helium Planet</option>
+        <option value = "Gaseous - Hot Jupiter">Hot Jupiter</option>
+        <option value = "Gaseous - Hot Neptune">Hot Neptune</option>
+        <option value = "Gaseous - Ice Giant">Ice Giant</option>
+        <option value = "Gaseous - Mini-Neptune">Mini-Neptune</option>
+        <option value = "Gaseous - Super-Neptune">Super-Neptune</option>
+        <option value = "Gaseous - Super-Jupiter">Super-Jupiter</option>
+        <option value = "Gaseous - Super Puff">Super Puff</option>
+        <option value = "Other">Other/Unknown</option>
+      </select>
+   <br><br>
 
   <label> Star Name: </label>
   <input type="text" name="star[name]" value="<%= @planet.star.name if @planet.star %>">
@@ -26,11 +53,9 @@
 
 <input type="submit" value="Save Changes">
 </form>
-<a class="button" href="/stars">Stars</a><br>
-<a class="button" href="/planets">Planets</a><br>
-<a class="button" href="/">Home</a>
-<br><br><br><br>
-<br><br><br><br><br>
-<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
 <br>
-<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<a href = "/stars">Stars</a>     |     <a href="/planets">Planets</a>     |     <a href="/">Home</a>
+
+<br><br><br><br><br>
+
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

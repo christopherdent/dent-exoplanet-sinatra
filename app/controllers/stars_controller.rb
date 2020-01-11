@@ -1,5 +1,7 @@
+require 'rack-flash'
 class StarsController < ApplicationController
 
+  use Rack::Flash
   # GET: /stars
   get "/stars" do
     if Helper.is_logged_in?(session)
@@ -64,9 +66,9 @@ class StarsController < ApplicationController
 
     @star = Star.find(params[:id])
     @star.update(params[:star])
-    if !params[:planet][:name].empty?
-      @star.planets << Planet.create(params[:planet])
-    end
+    #if !params[:planet][:name].empty?
+    #  @star.planets << Planet.create(params[:planet]) Not seeing need to allow new planet creation here.  think about it.
+    #end
     @star.save
     redirect "/stars/#{@star.id}"
   end
@@ -74,6 +76,8 @@ class StarsController < ApplicationController
   # DELETE: /stars/5/delete
   delete "/stars/:id" do
     @star = Star.find(params[:id])
+    flash[:message] = "Warning - Deleting Star will Delete Associated Planets."
+    @star.planets.destroy_all
     @star.delete
     redirect "/stars"
   end

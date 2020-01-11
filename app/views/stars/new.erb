@@ -20,6 +20,7 @@
            <option value = "Red Dwarf">Red Dwarf</option>
            <option value = "White Dwarf">White Dwarf</option>
            <option value = "Brown Dwarf">Brown Dwarf</option>
+           <option value = "Pulsar">Pulsar</option>
          </select>
 <br>
 
@@ -32,11 +33,9 @@
 
 <input type="submit" value="Create New Star System">
 </form>
- <p>--------------------------------------------------------------------------------------------------</p>
+
 
 
 <a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a>     |     <a class="button" href="/">Home</a>
 <br><br><br><br><br>
-<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>
-<br>
-<a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
