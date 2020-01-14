@@ -1,27 +1,23 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
-
-<h2>All Planets</h2>
-
+<a class="button" href="/stars">Stars</a>   |   Planets   |   <a class="button" href="/">Home</a>
 <div class='jumbotron'>
+<h3>All Exoplanets</h3>
+<br>
 
 <% @planets.each do |planet| %>
 
-<%= p 'Star:' if planet == planet.star.planets.first %> <%= planet.star.name if planet == planet.star.planets.first %>
+<%= 'Solar System:' if planet == planet.star.planets.first %> <%= planet.star.name if planet == planet.star.planets.first %> <!--- #if the planet is first in the star's array of planets, put the star name in front of it --->
 <ul>
-<li>  <a href="/planets/<%= planet.slug %>"><%= planet.name if planet.star_id != nil %> </a>  <br>  <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
+<li><a href="/planets/<%= planet.slug %>"><%= planet.name if planet.star_id != nil %></a></li>    <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
 </ul>
 <% end %>
+
+<br>
+<form method="get" action="/planets/new"><button type="submit">Add a New Planet</button></form>
+<br>
 </div>
-<br><br>
-
-<a href="/planets/new">Add a New Planet</a>
 
 <br><br>
-
-
-<a class="button" href="/stars">Stars</a>   |   Planets   |   <a class="button" href="/">Home</a>
-
-<br><br><br><br><br>
 <%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

@@ -1,6 +1,6 @@
 <h2> Edit Star Details </h2>
 
-<form action="/stars/<%= @star.id %>" method="post">
+<form action="/stars/<%= @star.slug %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
 
   <label> Star Name </label>
@@ -34,8 +34,7 @@
       <li><a href="/planets/<%= planet.id %>"><%= planet.name %></a>
     <% end %>
     </ul>
-<!--- <label>Add New Planet:</label>
-<input type="text" name="planet[name]">  Not seeing a reason to let them add new planet in the edit star section --->
+
 <br>
 
 <input type="submit" value="Save Changes" id="submit">

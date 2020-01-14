@@ -53,10 +53,10 @@ class StarsController < ApplicationController
   end
 
   # GET: /stars/5/edit
-  get "/stars/:id/edit" do
+  get "/stars/:slug/edit" do
     if Helper.is_logged_in?(session)
       @user = Helper.current_user(session)
-      @star = Star.find(params[:id])
+      @star = Star.find_by_slug(params[:slug])
       erb :"/stars/edit"
     else
       erb :"/users/login"
@@ -64,16 +64,16 @@ class StarsController < ApplicationController
   end
 
   # PATCH: /stars/5
-  patch "/stars/:id" do
+  patch "/stars/:slug" do
 
-    @star = Star.find(params[:id])
+    @star = Star.find_by_slug(params[:slug])
     if @star && @star.user == Helper.current_user(session)
       @star.update(params[:star])
       @star.save
-      redirect "/stars/#{@star.id}"
+      redirect "/stars/#{@star.slug}"
     else
       flash[:warning] = "You can't edit someone else's star."
-      redirect "/stars/#{@star.id}"
+      redirect "/stars/#{@star.slug}"
     end
   end
 

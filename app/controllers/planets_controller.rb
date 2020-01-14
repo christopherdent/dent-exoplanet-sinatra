@@ -64,23 +64,12 @@ end
    end
   end
 
-  # GET: /planets/5
-  #get "/planets/:id" do
-  #  if Helper.is_logged_in?(session)
-  #    @user = Helper.current_user(session)
-  #    @planet = Planet.find_by_id(params[:id])
-  #    @star = Star.find_by_id(@planet.star_id)
-  #    erb :"/planets/show"
-  #  else
-  #    erb :"/users/login"
-  #  end
-  #end
-
   # GET: /planets/5/edit
-  get "/planets/:id/edit" do
+  get "/planets/:slug/edit" do
     if Helper.is_logged_in?(session)
       @user = Helper.current_user(session)
-      @planet = Planet.find(params[:id])
+    #  binding.pry
+      @planet = Planet.find_by_slug(params[:slug])
       erb :"/planets/edit"
     else
       erb :"/users/login"
@@ -88,8 +77,8 @@ end
   end
 
   # PATCH: /planets/5
-  patch "/planets/:id" do
-    @planet = Planet.find_by_id(params[:id])
+  patch "/planets/:slug" do
+    @planet = Planet.find_by_slug(params[:slug])
     if @planet && @planet.user == Helper.current_user(session)
 
       @planet.update(params[:planet])
@@ -98,11 +87,11 @@ end
           @star.planets << @planet
         end
       @planet.save
-    redirect "/planets/#{@planet.id}"
+    redirect "/planets/#{@planet.slug}"
     else
 
       flash[:warning] = "You can't edit someone else's planet."
-      redirect "/planets/#{@planet.id}"
+      redirect "/planets/#{@planet.slug}"
     end
   end
 

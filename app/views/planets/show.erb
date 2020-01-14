@@ -1,7 +1,11 @@
 <% if flash.has?(:warning) %>
   <%= flash[:warning] %>
 <% end %>
-
+<br>
+<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a>     |     <a class="button" href="/">Home</a>
+<br>
+<br>
+<div class='jumbotron'>
 <h3>Planet Information for <%= @planet.name %></h3>
 <ul>
 <li>Star:  <%= @planet.star.name if @planet.star %>
@@ -12,16 +16,17 @@
 
 <br><br>
 
-<a href = "/stars/<%= @star.slug if @planet.star%>">View System</a>     |     <a class="button" href="/planets/<%= @planet.id %>/edit">Edit Planet</a>     |     <a href = "/planets/new">Add More Planets</a>
-<br><br>
-
-<form method="post" action="/planets/<%= @planet.id %>">
+<div class="btn-group btn-group-lg" role="group">
+<form method="get" action="/stars/<%= @star.slug %>"><button type="submit">View System</button></form>
+<form method="get" action="/planets/<%= @planet.slug %>/edit"><button type="submit">Edit Planet</button></form>
+<form method="post" action="/planets/<%= @planet.slug %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Planet">
 </form>
 
 <br><br>
+</div>
+</div>
 
-<a class="button" href="/stars">Stars</a>    |    <a class="button" href="/planets">Planets</a>     |     <a class="button" href="/">Home</a>
-<br><br><br><br><br>
+<br><br>
 <%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>

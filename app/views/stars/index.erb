@@ -1,18 +1,23 @@
-<h1>
- Star Landing Page
-</h1>
-
-
-<% Star.all.each do |star| %>
-  <a href="/stars/<%= star.slug %>"><%= star.name %></a> <br>
-<% end %>
-<br><br>
-<a href="/stars/new">Add a New Star</a>
-
-<br><br>
-
 
 Stars   |   <a class="button" href="/planets">Planets</a>   |   <a class="button" href="/">Home</a>
+<br>
+<br>
+<div class = "jumbotron">
+<h3> Stars </h3>
+<br>
+<% Star.all.each do |star| %>
+<ul>
+  <li><a href="/stars/<%= star.slug %>"><%= star.name %></a> </li>
+</ul>
+<% end %>
+<br><br>
 
-<br><br><br><br><br>
+<form method="get" action="/stars/new"><button type="submit">Add a New Star</button></form>
+
+</div>
+<br><br>
+
+
+
+<br><br>
 <%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
