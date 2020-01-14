@@ -1,11 +1,10 @@
 require 'rack-flash'
 class StarsController < ApplicationController
-
   use Rack::Flash
+
   # GET: /stars
   get "/stars" do
     if Helper.is_logged_in?(session)
-
       @user = Helper.current_user(session)
       erb :"/stars/index"
     else
@@ -27,11 +26,15 @@ class StarsController < ApplicationController
   # POST: /stars
   post "/stars" do
     @stars = Star.all
+    @user = Helper.current_user(session)
     @star = Star.create(params[:star])
       if !params[:planet][:name].empty?
-        @star.planets << Planet.create(params[:planet])
+        @planet = Planet.create(params[:planet])
+        @star.planets << @planet
+        @user.planets << @planet
       end
       @star.save
+    @user.stars << @star
     redirect "/stars/#{@star.id}"
   end
 
@@ -53,9 +56,7 @@ class StarsController < ApplicationController
     if Helper.is_logged_in?(session)
       @user = Helper.current_user(session)
       @star = Star.find(params[:id])
-      #binding.pry
       erb :"/stars/edit"
-
     else
       erb :"/users/login"
     end
@@ -65,20 +66,27 @@ class StarsController < ApplicationController
   patch "/stars/:id" do
 
     @star = Star.find(params[:id])
-    @star.update(params[:star])
-    #if !params[:planet][:name].empty?
-    #  @star.planets << Planet.create(params[:planet]) Not seeing need to allow new planet creation here.  think about it.
-    #end
-    @star.save
-    redirect "/stars/#{@star.id}"
+    if @star && @star.user == Helper.current_user(session)
+      @star.update(params[:star])
+      @star.save
+      redirect "/stars/#{@star.id}"
+    else
+      flash[:warning] = "You can't edit someone else's star."
+      redirect "/stars/#{@star.id}"
+    end
   end
 
   # DELETE: /stars/5/delete
   delete "/stars/:id" do
+
     @star = Star.find(params[:id])
-    flash[:message] = "Warning - Deleting Star will Delete Associated Planets."
-    @star.planets.destroy_all
-    @star.delete
-    redirect "/stars"
+    if @star && @star.user == Helper.current_user(session)
+      @star.planets.destroy_all
+      @star.delete
+      redirect "/stars"
+    else
+      flash[:warning] = "You can't delete someone else's star."
+      redirect "/stars/#{@star.id}"
+    end
   end
 end

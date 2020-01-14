@@ -1,3 +1,6 @@
+<% if flash.has?(:warning) %>
+  <%= flash[:warning] %>
+<% end %>
 
 <h3>Planet Information for <%= @planet.name %></h3>
 <ul>

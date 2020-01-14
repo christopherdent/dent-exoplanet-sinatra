@@ -5,24 +5,30 @@
 
 <body id='body'>
 <div class="container">
-  <header><img src="/images/2stars.jpg" class="main-image" alt="Planet with Two Stars" height="200" width="250"></header>
 
+  <img src="/images/Andasala.png" alt="Andasala" height="250" width="300" id="left">
+  <img src="/images/2stars.jpg" alt="Planet with Two Stars" height="250" width="350" id="center">
+  <img src="/images/Exoplanet.jpg" alt="Planet with Two Stars" height="250" width="375" id="right">
+
+
+  <div class="jumbotron">
   <div class="col-md-8 col-md-offset-2">
     <h2>Welcome to Exoplanet Indexer!</h2>
 
-    <div class="content">
+
       <p>Welcome to the Exoplanet Indexer.  Keep track of the latest discoveries right here.
+  <p><a href="/login">Login</a> to Exoplanet Indexer or <a href="/signup">create an account.</a></p>
     </div>
   </div>
 
 
-  <p><a href="/login">Login</a> to Exoplanet Indexer or <a href="/signup">create an account.</a></p>
+
 
 
 </div>
 <br><br><br>
 <% if Helper.is_logged_in?(session) %>
-<%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+<%= "Logged In" %>  |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
 <% end %>
 
 </body>

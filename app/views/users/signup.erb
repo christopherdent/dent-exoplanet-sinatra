@@ -1,14 +1,26 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+
+<% if flash.has?(:alert) %>
+  <%= flash[:alert] %>
+<% end %>
+
+<br><br>
+
+
+
 <h3>Sign Up</h3>
+<br>
 <form action="/signup" method="POST">
 
-	<input type="text" name="username" placeholder="Username:">
+	<input type="text" name="username" placeholder="Username:" required >
   <br><br>
-	<input type="password" name="password" placeholder="Password:">
+	<input type="password" name="password" placeholder="Password:" required >
   <br><br>
 
-	<input type="submit" value="Sign Up">
+	<input type="submit" value="Sign Up" class="btn-primary btn-sm" role="button">
 </form>
+<br>
+<p>Already have an account?  <a href="/login">Login</a>.</p>
 <br><br><br><br><br><br>

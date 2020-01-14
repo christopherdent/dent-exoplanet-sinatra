@@ -7,11 +7,12 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'exo'
     set :public_folder, 'public'
     set :views, 'app/views'
+    register Sinatra::Validation
 
   end
 
   get '/' do
-
+    @user = Helper.current_user(session)
     erb :index
   end
 

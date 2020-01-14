@@ -1,8 +1,10 @@
-
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 
 <h2>All Planets</h2>
 
-
+<div class='jumbotron'>
 
 <% @planets.each do |planet| %>
 
@@ -11,7 +13,7 @@
 <li>  <a href="/planets/<%= planet.id %>"><%= planet.name if planet.star_id != nil %> </a>  <br>  <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
 </ul>
 <% end %>
-
+</div>
 <br><br>
 
 <a href="/planets/new">Add a New Planet</a>

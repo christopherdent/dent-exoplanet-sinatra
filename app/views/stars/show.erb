@@ -2,6 +2,11 @@
   <%= flash[:message] %>
 <% end %>
 
+<% if flash.has?(:warning) %>
+  <%= flash[:warning] %>
+<% end %>
+
+
 <h3>Star Information for: <%= @star.name %></h3>
 
 <ul>

@@ -1,5 +1,10 @@
+<div class="row">
+
+
 <h2>Edit Planet Details</h2>
 
+
+<div class="col-12">
 <form action="/planets/<%= @planet.id %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
 
@@ -53,9 +58,15 @@
 
 <input type="submit" value="Save Changes">
 </form>
+
+</div>
+<br>
+
 <br>
 <a href = "/stars">Stars</a>     |     <a href="/planets">Planets</a>     |     <a href="/">Home</a>
 
 <br><br><br><br><br>
 
 <%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+
+</div>

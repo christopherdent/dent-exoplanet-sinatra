@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20200104040133) do
     t.string   "discovered_by"
     t.string   "category"
     t.integer  "star_id"
+    t.integer  "user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20200104040133) do
     t.string   "name"
     t.string   "star_type"
     t.integer  "distance"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

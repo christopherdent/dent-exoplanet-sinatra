@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-
+  #validates_uniqueness_of :username
+  validates :username, on: :create, uniqueness: { case_sensitive: false, message: "An account has already been made with this email address." }
   has_secure_password
   has_many :planets
   has_many :stars

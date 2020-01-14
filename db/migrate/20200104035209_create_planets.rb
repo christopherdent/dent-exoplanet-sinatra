@@ -6,6 +6,7 @@ class CreatePlanets < ActiveRecord::Migration
       t.string :discovered_by
       t.string :category
       t.integer :star_id
+      t.integer :user_id
       t.timestamps null: false
     end
   end

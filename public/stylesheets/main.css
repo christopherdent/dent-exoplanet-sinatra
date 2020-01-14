@@ -1,11 +1,17 @@
 label {
   width: 175px;
-  display: inline-block;
-  font-family: verdana;
   text-align: left;
 }
 
+#left {
+    float: left;
+}
 
-#btndelete  {
-  margin-left:100px;
-  }
+#center {
+    float: center;
+}
+
+
+#right {
+    float: right;
+}

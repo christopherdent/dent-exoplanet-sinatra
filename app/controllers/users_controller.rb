@@ -3,21 +3,32 @@ class UsersController < ApplicationController
     use Rack::Flash
 
   get '/signup' do
+    #if already logged in, redirect to the planets homepage
     if Helper.is_logged_in?(session)
       redirect '/planets'
+    #otherwise show them the signup page.
     else
-      erb :"/users/signup" #locals: {message: "Please sign up before you sign in"}
+      erb :"/users/signup"
     end
   end
 
   post '/signup' do
+    #if the signup inputs are empty then reload the signup page
     if Helper.empty_input?(params)
       redirect to '/signup'
+    #otherwise create the user and log them in then direct them to the planets page
     else
-      @user = User.new(:username => params[:username], :password => params[:password])
+     @user = User.new(:username => params[:username], :password => params[:password])
+     #check to see if username already exists and prompt them to try another if it does.
+      if User.exists?(:username => params[:username])
+        flash[:alert] = "Username Taken.  Try something else."
+        redirect to '/signup'
+      #otherwise, save the new user and log them in. 
+      else
       @user.save
-      session[:user_id] = @user.id
+      session[:user_id] = @user.id  #logging in
       redirect to '/planets'
+      end
     end
   end
 
@@ -44,7 +55,7 @@ class UsersController < ApplicationController
     if Helper.is_logged_in?(session)
       session.destroy
       session.clear
-      redirect to '/login'
+      redirect to '/'
     end
        redirect '/'
   end
