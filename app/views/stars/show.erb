@@ -18,13 +18,14 @@
 <form method="get" action="/stars/<%= @star.id %>/edit"><button type="submit">Edit Star</button></form>
 <br>
 
-
+<form method="post" action="/stars/<%= @star.id %>"><input id="hidden" type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete Star System"></form>
+<br>
 
 
 <h4><%= @star.name %> Planets: </h4>
 <ul>
 <% @star.planets.each do |planet| %>
-<li><a href = '/planets/<%= planet.id %>'><%= planet.name %></a>
+<li><a href = '/planets/<%= planet.slug %>'><%= planet.name %></a>
 <% end %>
 </ul>
 <br>
@@ -35,7 +36,6 @@
   </form>
 <br>
 
-<form method="post" action="/stars/<%= @star.id %>"><input id="hidden" type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete Star System"></form>
 
 <br>
 

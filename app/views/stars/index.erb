@@ -4,7 +4,7 @@
 
 
 <% Star.all.each do |star| %>
-  <a href="/stars/<%= star.id %>"><%= star.name %></a> <br>
+  <a href="/stars/<%= star.slug %>"><%= star.name %></a> <br>
 <% end %>
 <br><br>
 <a href="/stars/new">Add a New Star</a>

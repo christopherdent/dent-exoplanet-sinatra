@@ -39,13 +39,14 @@ class StarsController < ApplicationController
   end
 
   # GET: /stars/5
-  get "/stars/:id" do
+
+  get '/stars/:slug' do
+  #get "/stars/:id" do
     if Helper.is_logged_in?(session)
       @user = Helper.current_user(session)
-      @star = Star.find(params[:id])
-      params["star"] = @star
+      @star = Star.find_by_slug(params[:slug])
+      #params["star"] = @star
       erb :"/stars/show"
-#if theres a star name can you add it to the params hash ?
     else
       erb :"/users/login"
     end

@@ -10,7 +10,7 @@
 
 <%= p 'Star:' if planet == planet.star.planets.first %> <%= planet.star.name if planet == planet.star.planets.first %>
 <ul>
-<li>  <a href="/planets/<%= planet.id %>"><%= planet.name if planet.star_id != nil %> </a>  <br>  <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
+<li>  <a href="/planets/<%= planet.slug %>"><%= planet.name if planet.star_id != nil %> </a>  <br>  <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
 </ul>
 <% end %>
 </div>

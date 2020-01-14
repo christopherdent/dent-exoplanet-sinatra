@@ -1,13 +1,15 @@
 module Slugifiable
-  module InstanceMethods
+
+  module SlugMethod
     def slug
-      self.name.gsub(" ", "-").downcase
+      #binding.pry
+      self.name.to_s.gsub(" ","-").downcase
     end
   end
 
-  module ClassMethods
+  module FindBySlug
     def find_by_slug(slug)
-      self.all.find{ |instance| instance.slug == slug }
+      self.all.find {|instance| instance.slug == slug}
     end
   end
 end

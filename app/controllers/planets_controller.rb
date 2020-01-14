@@ -7,10 +7,10 @@ class PlanetsController < ApplicationController
     if Helper.is_logged_in?(session)
         @user = Helper.current_user(session)
         @planets = Planet.all
-          @planets.each do |planet|
-            @planet = planet
-          @star = Star.find_by_id(planet.star_id)
-          end
+          #@planets.each do |planet|
+        #    @planet = planet
+        #  @star = Star.find_by_id(planet.star_id)
+        #  end
           erb :"/planets/index"
     else
       redirect to '/login'
@@ -31,7 +31,7 @@ class PlanetsController < ApplicationController
   get '/planets/:slug' do
     if Helper.is_logged_in?(session)
       @user = Helper.current_user(session)
-      @planet = Planet.find_by_id(params[:id])
+      @planet = Planet.find_by_slug(params[:slug])
       @star = Star.find_by_id(@planet.star_id)
       erb :"/planets/show"
     else
