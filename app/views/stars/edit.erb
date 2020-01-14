@@ -1,5 +1,8 @@
-<h2> Edit Star Details </h2>
+<div class="page-header">
+<h3>Edit Star Details</h3>
+</div>
 
+<div class="jumbotron">
 <form action="/stars/<%= @star.slug %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
 
@@ -15,6 +18,7 @@
              <option value = "Giant">Giant</option>
              <option value = "Main Sequence">Main Sequence</option>
              <option value = "Red Dwarf">Red Dwarf</option>
+             <option value = "Yellow Dwarf">Yellow Dwarf</option>
              <option value = "White Dwarf">White Dwarf</option>
              <option value = "Brown Dwarf">Brown Dwarf</option>
              <option value = "Pulsar">Pulsar</option>
@@ -31,15 +35,17 @@
     <br>
     <ul>
     <% @star.planets.all.each do |planet| %>
-      <li><a href="/planets/<%= planet.id %>"><%= planet.name %></a>
+      <li><a href="/planets/<%= planet.slug %>"><%= planet.name %></a>
     <% end %>
     </ul>
 
 <br>
 
-<input type="submit" value="Save Changes" id="submit">
+<input type="submit" value="Save Changes" class="btn btn-success btn-lg" role="button">
 
 </form>
+
+</div>
 <br>
 <a href = "/stars">Stars</a>     |     <a href="/planets">Planets</a>     |     <a href="/">Home</a>
 

@@ -35,7 +35,7 @@ class StarsController < ApplicationController
       end
       @star.save
     @user.stars << @star
-    redirect "/stars/#{@star.id}"
+    redirect "/stars/#{@star.slug}"
   end
 
   # GET: /stars/5

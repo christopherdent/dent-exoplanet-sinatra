@@ -1,10 +1,8 @@
-<div class="row">
+<div class="page-header">
+<h3>Edit Planet Details</h3>
+</div>
 
-
-<h2>Edit Planet Details</h2>
-
-
-<div class="col-12">
+<div class="jumbotron">
 <form action="/planets/<%= @planet.slug %>" method="post">
   <input type="hidden" id="hidden" name="_method" value="PATCH">
 
@@ -55,8 +53,8 @@
 
 
   <br><br>
+<input type="submit" value="Save Changes" class="btn btn-success btn-lg" role="button">
 
-<input type="submit" value="Save Changes">
 </form>
 
 </div>
