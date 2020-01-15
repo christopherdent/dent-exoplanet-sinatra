@@ -6,15 +6,19 @@
 <h3>All Exoplanets</h3>
 <br>
 
-<% @planets.each do |planet| %>
+<% Star.all.each do |star| %>
+<p>System: <%= star.name %></p>
 
-<%= 'Solar System:' if planet == planet.star.planets.first %> <%= planet.star.name if planet == planet.star.planets.first %> <!--- #if the planet is first in the star's array of planets, put the star name in front of it --->
+<% star.planets.each do |planet| %>
 <ul>
-<li><a href="/planets/<%= planet.slug %>"><%= planet.name if planet.star_id != nil %></a></li>    <!--- if planet.star_id !=nil is there to prevent starless planets from showing on the list. starless planets shouldn't exist, really should just find a way to prevent that.  --->
+<li><a href="/planets/<%= planet.slug %>"><%= planet.name %></a></li>
 </ul>
-<% end %>
+  <% end %>
+  <% end %>
+
 
 <br>
+
 <form method="get" action="/planets/new"><button type="submit">Add a New Planet</button></form>
 <br>
 </div>

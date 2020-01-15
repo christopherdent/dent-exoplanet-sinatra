@@ -20,7 +20,7 @@
 <div class="btn-group btn-group-lg" role="group">
 <form method="get" action="/stars/<%= @star.slug %>/edit"><button type="submit">Edit Star</button></form>
 
-<form method="post" action="/stars/<%= @star.id %>"><input id="hidden" type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete Star System"></form>
+<form method="post" action="/stars/<%= @star.slug %>"><input id="hidden" type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete Star System"></form>
 </div>
 
 <br><br>

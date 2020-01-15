@@ -7,10 +7,6 @@ class PlanetsController < ApplicationController
     if Helper.is_logged_in?(session)
         @user = Helper.current_user(session)
         @planets = Planet.all
-          #@planets.each do |planet|
-        #    @planet = planet
-        #  @star = Star.find_by_id(planet.star_id)
-        #  end
           erb :"/planets/index"
     else
       redirect to '/login'
@@ -45,30 +41,28 @@ end
       @user = Helper.current_user(session)
       @planets = Planet.all
       @planet = Planet.create(params[:planet])
-      @star = Star.find_by_name(params[:star][:name])
-      if @star == nil
-        @star = Star.create(params[:star])
-      else
-        @planet.star = @star
-      end
+      @star = Star.find_by_name(params[:star][:name])  #@star is equal to the star found by params star name
+        if @star == nil  #if find by name didnt f ind a star
+          @star = Star.create(params[:star])  #create one
+        else
+          @planet.star = Star.find_by_name(params[:star][:name])
+        end
+      @planet.star_id = @star.id
       @star.planets << @planet
       @user.planets << @planet
       @user.stars << @star
       @planet.save
       flash[:message] = "Successfully added planet."
-      #redirect "/stars/#{@star.id}"
       redirect "/planets"
     else
       redirect to '/login'
-     #redirect "/planets/#{@planet.id}"  -  seems to make more sense to redirect to the star show page, with planets listed and linked
-   end
+    end
   end
 
   # GET: /planets/5/edit
   get "/planets/:slug/edit" do
     if Helper.is_logged_in?(session)
       @user = Helper.current_user(session)
-    #  binding.pry
       @planet = Planet.find_by_slug(params[:slug])
       erb :"/planets/edit"
     else
@@ -96,15 +90,15 @@ end
   end
 
   # DELETE: /planets/5/delete
-  delete "/planets/:id" do
-    @planet = Planet.find(params[:id])
+  delete "/planets/:slug" do
+    @planet = Planet.find_by_slug(params[:slug])
 
     if @planet && @planet.user == Helper.current_user(session)
       @planet.delete
     redirect "/planets"
     else
       flash[:warning] = "You can't delete someone else's planet."
-      redirect "/planets/#{@planet.id}"
+      redirect "/planets/#{@planet.slug}"
     end
   end
 

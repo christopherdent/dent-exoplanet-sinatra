@@ -78,16 +78,16 @@ class StarsController < ApplicationController
   end
 
   # DELETE: /stars/5/delete
-  delete "/stars/:id" do
+  delete "/stars/:slug" do
 
-    @star = Star.find(params[:id])
+    @star = Star.find_by_slug(params[:slug])
     if @star && @star.user == Helper.current_user(session)
       @star.planets.destroy_all
       @star.delete
       redirect "/stars"
     else
       flash[:warning] = "You can't delete someone else's star."
-      redirect "/stars/#{@star.id}"
+      redirect "/stars/#{@star.slug}"
     end
   end
 end
