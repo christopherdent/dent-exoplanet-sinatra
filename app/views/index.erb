@@ -3,7 +3,10 @@
   <title>Exoplanet Indexer</title>
 </head>
 
-<body id='body'>
+<body>
+
+
+
 <div class="container">
 <center>
   <img src="/images/Andasala.png" alt="Andasala" height="250" width="300" id="left">
@@ -18,18 +21,18 @@
 
       <p>Welcome to the Exoplanet Indexer.  Keep track of the latest discoveries right here.
   <p><a href="/login">Login</a> to Exoplanet Indexer or <a href="/signup">create an account.</a></p>
-    </div>
-  </div>
 
-
+  <br><br><br>
+  <% if Helper.is_logged_in?(session) %>
+  <%= "Logged In" %>     |     <a href="/planets">View All Planets</a>   |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+  <% end %>
 
 
 
 </div>
-<br><br><br>
-<% if Helper.is_logged_in?(session) %>
-<%= "Logged In" %>  |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
-<% end %>
 
+
+
+</div></div>
 </body>
 </html>

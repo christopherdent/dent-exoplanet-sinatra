@@ -51,6 +51,7 @@ html {
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
+  color: white;
 }
 
 body {
@@ -59,9 +60,10 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
   text-align: left;
   background-color: #fff;
+  background-image: url("/images/background.png");
+  color: #fff;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -4243,6 +4245,7 @@ input[type="button"].btn-block {
 
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
+
 }
 
 .nav-link.disabled {
@@ -4295,7 +4298,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #007bff;
+  background-color: #B2D7FF;
 }
 
 .nav-fill .nav-item {
@@ -5244,8 +5247,9 @@ a.badge-dark:focus, a.badge-dark.focus {
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #28a745;
+  background-color: #eeeeee;
   border-radius: 0.3rem;
+  color: black;
 }
 
 @media (min-width: 576px) {

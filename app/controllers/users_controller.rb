@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       if User.exists?(:username => params[:username])
         flash[:alert] = "Username Taken.  Try something else."
         redirect to '/signup'
-      #otherwise, save the new user and log them in. 
+      #otherwise, save the new user and log them in.
       else
       @user.save
       session[:user_id] = @user.id  #logging in
@@ -59,10 +59,4 @@ class UsersController < ApplicationController
     end
        redirect '/'
   end
-
-    #get '/users/:slug' do
-    #  @user = User.find_by_slug(params[:slug])
-    #  erb :"/users/show"
-    #end
-
 end

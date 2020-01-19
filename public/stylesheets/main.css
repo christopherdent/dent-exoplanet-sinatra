@@ -3,15 +3,8 @@ label {
   text-align: left;
 }
 
-#left {
-    float: left;
-}
 
-#center {
-    float: center;
+.all {
+  padding: 15% 0;
 }
-
-
-#right {
-    float: right;
-}
+ 

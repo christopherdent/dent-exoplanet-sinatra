@@ -1,7 +1,9 @@
 <% if flash.has?(:message) %>
   <%= flash[:message] %>
 <% end %>
+<p>
 <a class="button" href="/stars">Stars</a>   |   Planets   |   <a class="button" href="/">Home</a>
+</p>
 <div class='jumbotron'>
 <h3>All Exoplanets</h3>
 <br>
@@ -23,5 +25,6 @@
 <br>
 </div>
 
-<br><br>
+<p>
 <%= "Logged In as" if Helper.is_logged_in?(session) %> <%= @user.username %>     |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
+</p>
