@@ -13,7 +13,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'rack-flash3'
 gem 'sinatra-validation'
-gem 'pg'
+
 
 group :test do
   gem 'rspec'
@@ -27,6 +27,7 @@ group :development do
 end
 
 group :production do
-   gem 'pg'
+   gem 'pg', '~> 1.2.3'
    gem 'activerecord-postgresql-adapter'
+   gem 'rails_12factor'
 end
