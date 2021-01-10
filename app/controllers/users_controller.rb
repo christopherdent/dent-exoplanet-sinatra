@@ -51,6 +51,17 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/users/:id' do
+    if Helper.is_logged_in?(session)
+      @user = User.find(params[:id])
+      erb :"/users/show"
+    else
+      erb :"/users/login"
+    end
+  end
+
+
+
   get '/logout' do
     if Helper.is_logged_in?(session)
       session.destroy
