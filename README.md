@@ -10,6 +10,8 @@ And then:
 
 $ `bundle install`
 
+UPDATE - View the live app at http://polar-lake-91544.herokuapp.com/.  Login as a guest (username: guest, password: guest).
+
 ## Usage
 
 To deploy the app locally please run `rake db:migrate` and then `shotgun` in your the terminal.  Then navigate to 'localhost:9393'.  
