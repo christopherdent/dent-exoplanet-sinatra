@@ -21,7 +21,7 @@
 
       <p>Welcome to the Exoplanet Explorer.  Keep track of the latest discoveries right here.
   <p><a href="/login">Login</a> to Exoplanet Explorer or <a href="/signup">create an account.</a></p>
-
+  <p><small>Here for a demo?    Login with username "guest" and password "guest" to look around!<small></p>
   <br><br><br>
   <% if Helper.is_logged_in?(session) %>
   <%= "Logged In" %>     |     <a href="/planets">View All Planets</a>   |     <a href = '/logout'><%= "Log Out" if Helper.is_logged_in?(session) %></a>
