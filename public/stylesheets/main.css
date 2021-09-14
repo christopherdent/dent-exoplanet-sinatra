@@ -8,3 +8,22 @@ label {
   padding: 15% 0;
 }
  
+
+
+/* h2 {
+  font-family: 'space-head', sans-serif;
+  visibility: hidden;
+  color: rgba(46, 165, 46, 0.133)
+} */
+
+
+h2 {
+  color: green !important;
+}
+
+
+small {
+  font-family: 'space-head', sans-serif;
+  visibility: hidden;
+  color: rgba(46, 165, 46, 0.133)
+}

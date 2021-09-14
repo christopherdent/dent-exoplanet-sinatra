@@ -1,0 +1,5 @@
+@font-face {
+    font-family: 'space-head';
+    src:  url('../space_age-webfont.woff2') format('woff2'),
+            url('../space_age-webfont.woff') format('woff');
+}
