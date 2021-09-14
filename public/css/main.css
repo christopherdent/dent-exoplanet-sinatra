@@ -1,0 +1,41 @@
+
+@font-face {
+  font-family: 'space-head';
+  src:  url('../fonts/space_age-webfont.woff2') format('woff2'),
+          url('../fonts/space_age-webfont.woff') format('woff');
+}
+
+
+label {
+  width: 175px;
+  text-align: left;
+}
+
+
+.all {
+  padding: 15% 0;
+}
+ 
+
+
+#main {
+  font-family: 'space-head', sans-serif;
+  position: relative;
+  text-align: center;
+  } 
+
+#intro {
+  position: relative;
+  text-align: center;
+}
+
+
+/* h2 {
+  color: rgb(30, 55, 168);
+} */
+
+
+small {
+  
+  
+}
