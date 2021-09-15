@@ -6,7 +6,9 @@
 </p>
 <div class='jumbotron'>
 <h3>All Exoplanets</h3>
-<br>
+<small>Please note,you can only edit/delete your own planets.  Testing the app?  <a href='/planets/new?'>Add a planet!</a></small>
+<br><br>
+
 
 <% Star.all.each do |star| %>
 <p>System: <%= star.name %></p>
