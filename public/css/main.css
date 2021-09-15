@@ -25,9 +25,11 @@ label {
 
 
 #main {
-  font-family: 'alien-head', sans-serif;
+  font-family: 'space-head', sans-serif;
   position: relative;
   text-align: center;
+  font-size: 350%;
+  color:blue
   } 
 
 #intro {
@@ -36,12 +38,15 @@ label {
 }
 
 
-/* h2 {
-  color: rgb(30, 55, 168);
-} */
-
-
-small {
+.static {
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
   
-  
+}
+
+.animated{
+  max-width: 100%;
+  height: auto;
+  border-radius: 30px;
 }
