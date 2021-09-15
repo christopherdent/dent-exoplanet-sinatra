@@ -9,7 +9,7 @@
 @font-face {
   font-family: 'alien-head';
   src:  url('../fonts/alienspace-webfont.woff2') format('woff2'),
-          url('../fonts/alien-space-webfont.woff') format('woff');
+          url('../fonts/alienspace-webfont.woff') format('woff');
 }
 
 label {
@@ -28,8 +28,9 @@ label {
   font-family: 'space-head', sans-serif;
   position: relative;
   text-align: center;
-  font-size: 350%;
-  color:blue
+  /* font-size: 350%; */
+  color:rgb(17, 17, 180);
+  font-size: 3em;
   } 
 
 #intro {
@@ -38,15 +39,29 @@ label {
 }
 
 
-.static {
-  max-width: 100%;
+#static1 {
+  
   height: auto;
   border-radius: 50%;
-  
+  max-height: 20%;
+  max-width: 20%;
+  padding-right: ;
+}
+
+
+#static2 {
+  height: auto;
+  border-radius: 50%;
+  max-height: 25%;
+  max-width: 25%;
 }
 
 .animated{
-  max-width: 100%;
+  width: 35%;
   height: auto;
-  border-radius: 30px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  margin-left: 25px;
+  margin-right: 25px;
+ 
 }
