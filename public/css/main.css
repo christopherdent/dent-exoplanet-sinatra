@@ -24,7 +24,8 @@ label {
  
 
 #intro {
-  font-size: 2vw;
+  font-size: 1.25vw;
+  /* font-size: 1.5rem; */
 }
 
 
@@ -33,13 +34,13 @@ label {
   position: relative;
   text-align: center;
   color:rgb(17, 17, 180);
-  font-size: 4vw;
+  font-size: 3.5vw;
   height: auto;
   overflow-wrap: break-word;
   } 
 
   .jumobtron{
-    /* padding: 2rem 1rem; */
+    
     padding-top: 2rem;
     padding-bottom: 2rem; 
     margin-bottom: 2rem;
@@ -47,6 +48,7 @@ label {
     border-radius: 0.3rem;
     color: black;
     display: inline-block;
+    
   }
 
 #intro {
