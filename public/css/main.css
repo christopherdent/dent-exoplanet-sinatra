@@ -1,10 +1,10 @@
 
+
 @font-face {
   font-family: 'space-head';
   src:  url('../fonts/space_age-webfont.woff2') format('woff2'),
           url('../fonts/space_age-webfont.woff') format('woff');
 }
-
 
 @font-face {
   font-family: 'alien-head';
@@ -23,19 +23,25 @@ label {
 }
  
 
+#intro {
+  font-size: 2vw;
+}
+
 
 #main {
   font-family: 'space-head', sans-serif;
   position: relative;
   text-align: center;
-    color:rgb(17, 17, 180);
-  font-size: 3.5vw;
+  color:rgb(17, 17, 180);
+  font-size: 4vw;
   height: auto;
   overflow-wrap: break-word;
   } 
 
   .jumobtron{
-    padding: 2rem 1rem;
+    /* padding: 2rem 1rem; */
+    padding-top: 2rem;
+    padding-bottom: 2rem; 
     margin-bottom: 2rem;
     background-color: #eeeeee;
     border-radius: 0.3rem;
