@@ -25,7 +25,6 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.16)
     bond (0.5.1)
-    builder (3.2.4)
     capybara (3.37.1)
       addressable
       matrix
@@ -86,7 +85,6 @@ GEM
     minitest (5.16.3)
     multi_json (1.15.0)
     mustermann (1.1.2)
-
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)

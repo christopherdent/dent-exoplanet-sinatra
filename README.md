@@ -4,13 +4,15 @@ Welcome to Exoplanet Indexer, the new app to track all of the latest discoveries
 
 ## Installation
 
-To use this app, just clone this [repo] https://github.com/christopherdent/dent-exoplanet-sinatra.git.
+To use this app, just clone this [repo] https://github.com/christopherdent/dent-exoplanet-sinatra.git.  Ensure you are using Ruby 2.7.3.  
 
 And then:
 
 $ `bundle install`
+$ `rake db:migrate`
+$ `rake db:seed`
 
-UPDATE - View the live app at http://polar-lake-91544.herokuapp.com/.  Login as a guest (username: guest, password: guest).
+Or view the live app at http://polar-lake-91544.herokuapp.com/.  Login as a guest (username: guest, password: guest).
 
 ## Usage
 
